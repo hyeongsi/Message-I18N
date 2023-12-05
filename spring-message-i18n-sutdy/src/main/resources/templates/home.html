@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="#{title}">메시지, 국제화 테스트</h1>
+<h2 th:text="#{hello.name(#{subtitle})}"></h2>
+<form method="post" th:object="${languageDto}">
+    <div th:text="#{label.select}">== 언어 선택 ==</div>
+    <select th:field="*{locale}">
+        <option value="" th:text="#{option.select}">언어 선택</option>
+        <option th:each="language : ${languages}" th:with="lang=|option.lang.${language.lang}|"
+                th:value="${language.locale}" th:text="#{${lang}}"></option>
+    </select>
+
+    <button type="submit" th:text="#{button.submit}">전송</button>
+</form>
+
+</body>
+</html>
